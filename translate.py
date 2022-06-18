@@ -1,7 +1,7 @@
 import re
 import json
 from mapping import *
-from encrypt import encrypt
+from encrypt import *
 
 # JSON dump formatting parameters
 json_indent = 2
@@ -20,7 +20,8 @@ converted_settings = {
         'id': 4,
         'version': '4.3.0',
         'newId': 6
-    }
+    },
+    'cumulativeStars': 0
 }
 
 # Convert Golden Egg acquisition data
@@ -55,13 +56,11 @@ if 'episodes' in save_data:
             converted_highscores[level_name]['lowScore'] = 0 if is_minigame else level['Points']
             converted_highscores[level_name]['powerUpScore'] = 0
             converted_highscores[level_name]['birds'] = 0 if is_minigame else 1
+            converted_settings['cumulativeStars'] += level['Stars']
             if level['EagleHighScore'] > 0:
                 converted_highscores[level_name]['eagleScoreMax'] = level['EagleHighScore']
                 converted_highscores[level_name]['eagleScoreMin'] = level['EagleHighScore']
-                if level['EagleTotalDestruction']:
-                    converted_highscores[level_name]['eagleScore'] = 100
-                else:
-                    converted_highscores[level_name]['eagleScore'] = 0
+                converted_highscores[level_name]['eagleScore'] = 100 if level['EagleTotalDestruction'] else 0
             if level_name in converted_highscores['openGoldenEggLevels'] and level['Points'] > 0:
                 converted_highscores['openGoldenEggLevels'][level_name]['opened'] = True
 

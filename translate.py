@@ -21,7 +21,8 @@ settings_data = {
         'version': '4.3.0',
         'newId': 6
     },
-    'cumulativeStars': 0,
+    'isPremium': True,
+    'cumulativeStars': 0
 }
 
 # Convert Golden Egg acquisition data
@@ -93,6 +94,15 @@ if do_activate_powerups:
     settings_data['flagTable'] = {
         'redsMightyFeathersPurchased': True
     }
+    settings_data['syncedFlagTable'] = {
+        'shockwavePowerupUnlocked': True
+    }
+    settings_data['installationSpecificInventory'] = {}
+    for powerup in PowerupInventory:
+        settings_data['installationSpecificInventory'][powerup] = {
+            'totalCount': PowerupInventory[powerup],
+            'usedCount': 0
+        }
 
 # Format and encrypt converted data
 highscores_raw = encrypt(convert(highscores_data))
@@ -105,5 +115,3 @@ highscores_file.close()
 settings_file = open('settings.lua', 'wb')
 settings_file.write(settings_raw)
 settings_file.close()
-
-print(convert(settings_data))

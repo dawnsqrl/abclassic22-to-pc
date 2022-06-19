@@ -59,5 +59,18 @@ BirdReference = {
     'TutorialTerence': ('BIRD_BIG_BROTHER', 'TUTORIAL_7', False),
     'TutorialMightyEagle': ('BAIT_SARDINE', 'TUTORIAL_8', False),
     'TutorialBubbles': ('BIRD_PUFFER_1', 'TUTORIAL_9', True),
-    'TutorialStella': ('BIRD_PINK', 'TUTORIAL_10', True)
+    'TutorialStella': ('BIRD_PINK', 'TUTORIAL_10', True),
+    'TutorialRedFeathers': ('BIRD_RED_FEATHERS', 'TUTORIAL_13', False),
+    'TutorialShockwave': ('BIRD_GREY_BLUE', 'TUTORIAL_14', False)
+}
+
+# Powerup inventory data
+PowerupInventory = {
+    'mightyeagle': 0,
+    'powerpotion': 9999,
+    'kingsling': 9999,
+    'slingscope': 9999,
+    'birdquake': 9999,
+    'shockwave': 9999,
+    'redsmightyfeathers': 5
 }

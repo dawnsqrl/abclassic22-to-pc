@@ -8,10 +8,10 @@ EpisodeID = {
     6: 'pack6',
     7: 'pack7',
     8: 'packSURF',
-    9: 'packG',
+    9: 'packG'
 }
 
-# Golden Eggs level name mapping
+# Golden Egg level name mapping
 GoldenEggName = {
     '1': 'LevelGE_4',
     '2': 'LevelGE_3',
@@ -45,5 +45,19 @@ GoldenEggName = {
     'Minigame#Radio': 'RADIO',
     'Minigame#AngryBirdsTune': 'KEYBOARD',
     'Minigame#Outlines': 'SEQUENCER',
-    'Minigame#Accordion': 'ACCORDION',
+    'Minigame#Accordion': 'ACCORDION'
+}
+
+# Bird tutorial mapping
+BirdReference = {
+    'TutorialRed': ('BIRD_RED', 'TUTORIAL_1', False),
+    'TutorialBlues': ('BIRD_BLUE', 'TUTORIAL_2', True),
+    'TutorialChuck': ('BIRD_YELLOW', 'TUTORIAL_3', True),
+    'TutorialBomb': ('BIRD_GREY', 'TUTORIAL_4', True),
+    'TutorialMatilda': ('BIRD_GREEN', 'TUTORIAL_5', True),
+    'TutorialHal': ('BIRD_BOOMERANG', 'TUTORIAL_6', True),
+    'TutorialTerence': ('BIRD_BIG_BROTHER', 'TUTORIAL_7', False),
+    'TutorialMightyEagle': ('BAIT_SARDINE', 'TUTORIAL_8', False),
+    'TutorialBubbles': ('BIRD_PUFFER_1', 'TUTORIAL_9', True),
+    'TutorialStella': ('BIRD_PINK', 'TUTORIAL_10', True)
 }

@@ -1,5 +1,3 @@
-import re
-import json
 from mapping import *
 from convert import *
 from encrypt import *

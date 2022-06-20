@@ -1,15 +1,35 @@
+import argparse
+import os
 from mapping import *
 from convert import *
 from encrypt import *
 
-# Do you want to give up the grind?
-do_activate_powerups = True
+# Handle input arguments
+parser = argparse.ArgumentParser(allow_abbrev=False)
+parser.add_argument('--no-grind', action='store_true', help='activate powerups in output save files')
+do_activate_powerups = parser.parse_args().no_grind
+
+# Test for output file
+if os.path.isfile('highscores.lua') or os.path.isfile('settings.lua'):
+    print('Output save file (highscores.lua / settings.lua) already exists')
+    while True:
+        response = input('Overwrite? [y/n] ')
+        if re.match('^[Yy]$', response) is not None:
+            break
+        elif re.match('^[Nn]$', response) is not None:
+            exit(0)
 
 # Read save data
-save_file = open('getGameState', encoding='utf-8', errors='ignore')
+try:
+    save_file = open('getGameState', encoding='utf-8', errors='ignore')
+except FileNotFoundError as exception:
+    raise Exception('Input save file (getGameState) is not found') from exception
 save_raw = save_file.read()
 save_file.close()
-save_data = json.loads(re.sub('^[^{]+(.*)[^}]+$', '\\1', save_raw))
+try:
+    save_data = json.loads(re.sub('^[^{]+(.*)[^}]+$', '\\1', save_raw))
+except json.decoder.JSONDecodeError as exception:
+    raise Exception('Input save file (getGameState) has incorrect content format') from exception
 
 # Initialize output save data
 highscores_data = {}
@@ -20,6 +40,7 @@ settings_data = {
         'newId': 6
     },
     'isPremium': True,
+    'shopChildlockOn': True,
     'cumulativeStars': 0
 }
 
@@ -87,6 +108,7 @@ else:
 
 # Update powerups data
 if do_activate_powerups:
+    settings_data['shopChildlockOn'] = False
     settings_data['mightyEagleUnlocked'] = True
     settings_data['mightyEagleEnabled'] = True
     settings_data['flagTable'] = {
@@ -107,9 +129,13 @@ highscores_raw = encrypt(convert(highscores_data))
 settings_raw = encrypt(convert(settings_data))
 
 # Output converted data to file
-highscores_file = open('highscores.lua', 'wb')
+try:
+    highscores_file = open('highscores.lua', 'wb')
+    settings_file = open('settings.lua', 'wb')
+except PermissionError as exception:
+    raise Exception('Output save file (highscores.lua / settings.lua) is not writable') from exception
 highscores_file.write(highscores_raw)
 highscores_file.close()
-settings_file = open('settings.lua', 'wb')
 settings_file.write(settings_raw)
 settings_file.close()
+print("Translation completed")

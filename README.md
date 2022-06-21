@@ -28,7 +28,7 @@ It took me around 2 weeks to 3-star all available levels
 on _RC:AB_ once again (1117 stars and 28 golden eggs), but
 I need to continue playing on the PC version for the
 remaining episodes (it is currently unknown whether they
-will ever be ported to _RC:AB_ as well). This translator is
+will be ported to _RC:AB_ anymore). This translator is thus
 for the very purpose of preserving my progress as I resume
 on a different platform.
 
@@ -75,10 +75,10 @@ This translator is developed based on the save data
 structure and content from version _RC:AB_ 1.2.1479 and
 _Angry Birds Classic_ PC 5.0.1.
 
-_RC:AB_ stores a much limited set of information in its
-save file than _Angry Birds Classic_ PC, so not all values
-can be deduced from `getGameState`. Below is a list of
-transferable data implemented in this translator.
+_RC:AB_ stores a much more limited set of information in
+its save file than _Angry Birds Classic_ PC, so not all
+values could be deduced from `getGameState`. Below is a
+list of transferable data implemented in this translator.
 
 * Level completion status, used bird count[^1], numeric
 score, star[^2]
@@ -86,7 +86,7 @@ score, star[^2]
 * Golden Egg level score, star, unlock status, open
 status[^4]
 * Encountered birds through tutorial
-* The last viewed page in each episode
+* Last viewed page in each episode's selection screen
 * Whether Hal has been released from cage (Level 6-4)
 
 Below is a non-exhaustive list of **_not_** transferable

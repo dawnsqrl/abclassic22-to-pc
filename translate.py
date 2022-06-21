@@ -6,7 +6,7 @@ from encrypt import *
 
 # Handle input arguments
 parser = argparse.ArgumentParser(allow_abbrev=False)
-parser.add_argument('--no-grind', action='store_true', help='activate powerups in output save files')
+parser.add_argument('--no-grind', action='store_true', help='activate powerups in output save file')
 do_activate_powerups = parser.parse_args().no_grind
 
 # Test for output file
